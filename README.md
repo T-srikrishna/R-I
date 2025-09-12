@@ -20,7 +20,7 @@ This project implements a real-time, privacy-preserving emotion recognition syst
 ### Installation
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/thermal-emotion-recognition.git
+   git clone https://github.com/T-srikrishna/R-I.git
    ```
 2. Install dependencies:
    ```
@@ -37,8 +37,6 @@ This project implements a real-time, privacy-preserving emotion recognition syst
 - `live_emotion_camera.py`: Script for real-time inference
 - `Facial emotion/`: Dataset folder (organized by emotion and palette)
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Citation
 If you use this project in your research, please cite:
@@ -47,6 +45,6 @@ A Multi-Phase Framework for Developing and Deploying a Real-Time, Privacy-Preser
 ```
 
 ## Acknowledgements
-- Tufts Face Database
+- Comprehensive Facial Thermal Dataset (DOI: 10.17632/8885sc9p4z.1)
 - Georgian College Research & Innovation Department
 - All referenced papers in the project documentation
