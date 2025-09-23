@@ -1,0 +1,34 @@
+# Thermal Emotion Recognition System Requirements
+# ==============================================
+
+# Core ML and Computer Vision
+tensorflow>=2.10.0
+opencv-python>=4.5.0
+numpy>=1.21.0
+scikit-learn>=1.0.0
+
+# Image Processing
+Pillow>=8.0.0
+matplotlib>=3.5.0
+
+# Data Analysis and Export
+pandas>=1.3.0
+
+# System and Utilities
+python-dateutil>=2.8.0
+
+# Optional: For advanced thermal camera integration
+# Uncomment the following lines if you have specific thermal cameras:
+
+# For FLIR cameras (requires FLIR SDK)
+# flir-python-api
+
+# For Seek Thermal cameras
+# python-seek-thermal
+
+# Development and Testing (optional)
+# pytest>=6.0.0
+# jupyter>=1.0.0
+
+# Note: Some thermal cameras may require additional proprietary SDKs
+# Please consult your camera manufacturer's documentation for specific requirements
