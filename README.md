@@ -16,11 +16,11 @@ This project implements a CNN-based thermal emotion recognition system using the
 
 ```
 R&I_ThermalCameras/
-├── thermal_emotion_notebook.ipynb      # Main analysis notebook
-├── thermal_emotion_model_enhanced.h5   # Best model (88.93% accuracy) - PRODUCTION READY
-├── live_emotion_camera.py              # Real-time emotion detection script
-├── README.md                          # This documentation
-└── Facial emotion/                    # Dataset directory
+├── thermal_emotion_notebook.ipynb      
+├── thermal_emotion_model_enhanced.h5   (88.93% accuracy) 
+├── live_emotion_camera.py              # Real-time demo emotion detection script
+├── README.md                         
+└── Facial emotion/                    
     ├── angry/
     ├── happy/
     ├── natural/
