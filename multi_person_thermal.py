@@ -65,13 +65,13 @@ class PersonTracker:
 class MultiPersonThermalSystem:
     """Multi-person thermal monitoring system"""
     
-    def __init__(self, model_path='thermal_emotion_model_enhanced.h5'):
+    def __init__(self, model_path='thermal_emotion_baseline_model.h5'):
         # Load the trained model
         try:
             self.model = load_model(model_path)
-            print(f"✅ Enhanced Model loaded: {model_path}")
+            print(f"Baseline Model loaded: {model_path}")
         except Exception as e:
-            print(f"❌ Error loading model: {e}")
+            print(f"Error loading model: {e}")
             exit(1)
         
         # Face detection
@@ -112,8 +112,8 @@ class MultiPersonThermalSystem:
         self.fps = 0
         self.prev_time = time.time()
         
-        print("🎥 Multi-Person Thermal System initialized!")
-        print("👥 Ready for crowd monitoring and screening")
+        print("Multi-Person Thermal System initialized!")
+        print("Ready for crowd monitoring and screening")
     
     def apply_advanced_thermal_effect(self, frame):
         """Enhanced thermal effects for better simulation"""
@@ -493,14 +493,14 @@ class MultiPersonThermalSystem:
         with open(filename, 'w') as f:
             json.dump(export_data, f, indent=2)
         
-        print(f"📊 Session data exported: {filename}")
+        print(f"Session data exported: {filename}")
         return filename
     
     def run(self, camera_source=0):
         """Run the multi-person thermal monitoring system"""
-        print("\n🚀 Starting Multi-Person Thermal Monitoring...")
-        print("👥 Optimized for crowd screening and monitoring")
-        print("\n🎮 Controls:")
+        print("\nStarting Multi-Person Thermal Monitoring...")
+        print("Optimized for crowd screening and monitoring")
+        print("\nControls:")
         print("  'q' - Quit")
         print("  's' - Save screenshot")
         print("  'e' - Export session data")
@@ -512,7 +512,7 @@ class MultiPersonThermalSystem:
         cap = cv2.VideoCapture(camera_source)
         
         if not cap.isOpened():
-            print("❌ Error: Could not open camera")
+            print("Error: Could not open camera")
             return
         
         # Set camera properties for better performance
@@ -528,7 +528,7 @@ class MultiPersonThermalSystem:
                 if not paused:
                     ret, frame = cap.read()
                     if not ret:
-                        print("❌ Error: Could not read frame")
+                        print("Error: Could not read frame")
                         break
                     
                     # Calculate FPS
@@ -561,7 +561,7 @@ class MultiPersonThermalSystem:
                     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                     filename = f"multi_person_screenshot_{timestamp}.jpg"
                     cv2.imwrite(filename, display_frame)
-                    print(f"📸 Screenshot saved: {filename}")
+                    print(f"Screenshot saved: {filename}")
                 elif key == ord('e'):
                     self.export_session_data()
                 elif key == ord('r'):
@@ -573,41 +573,41 @@ class MultiPersonThermalSystem:
                         'total_detections': 0
                     }
                     self.total_persons_seen = 0
-                    print("🔄 Statistics reset")
+                    print("Statistics reset")
                 elif key == ord(' '):  # Space bar
                     paused = not paused
-                    print("⏸️  Paused" if paused else "▶️  Resumed")
+                    print("Paused" if paused else "Resumed")
                 elif key == ord('a'):
                     show_alerts = not show_alerts
-                    print("🚨 Alerts enabled" if show_alerts else "🔇 Alerts disabled")
+                    print("Alerts enabled" if show_alerts else "Alerts disabled")
         
         except KeyboardInterrupt:
-            print("\n⚠️  System interrupted")
+            print("\nSystem interrupted")
         
         finally:
             cap.release()
             cv2.destroyAllWindows()
             
             # Final session summary
-            print("\n📊 FINAL SESSION SUMMARY:")
+            print("\nFINAL SESSION SUMMARY:")
             print("="*40)
-            print(f"👥 Total persons detected: {self.total_persons_seen}")
-            print(f"🔥 High temperature alerts: {self.session_stats['high_temp_alerts']}")
-            print(f"🧠 Emotion alerts: {self.session_stats['emotion_alerts']}")
-            print(f"📈 Total detections: {self.session_stats['total_detections']}")
+            print(f"Total persons detected: {self.total_persons_seen}")
+            print(f"High temperature alerts: {self.session_stats['high_temp_alerts']}")
+            print(f"Emotion alerts: {self.session_stats['emotion_alerts']}")
+            print(f"Total detections: {self.session_stats['total_detections']}")
             
             # Auto-export final data
             final_export = self.export_session_data()
-            print(f"💾 Final data exported: {final_export}")
-            print("\n✅ Multi-Person Thermal System closed")
+            print(f"Final data exported: {final_export}")
+            print("\nMulti-Person Thermal System closed")
 
 def main():
     """Main function"""
-    print("👥🌡️  MULTI-PERSON THERMAL MONITORING SYSTEM")
+    print("MULTI-PERSON THERMAL MONITORING SYSTEM")
     print("="*60)
-    print("🎯 Advanced simulation for crowd screening scenarios")
-    print("🏥 Perfect for: Airports, Buildings, Health Screening")
-    print("🧠 Features: Person Tracking, Emotion Analysis, Temperature Monitoring")
+    print("Advanced simulation for crowd screening scenarios")
+    print("Perfect for: Airports, Buildings, Health Screening")
+    print("Features: Person Tracking, Emotion Analysis, Temperature Monitoring")
     print("="*60)
     
     # Initialize and run system

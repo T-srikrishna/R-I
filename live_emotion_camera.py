@@ -8,12 +8,12 @@ from tensorflow.keras.models import load_model
 # Load Haar Cascade for face detection
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
-# Load the enhanced model (88.93% accuracy)
-model = load_model('thermal_emotion_model_enhanced.h5')
-print("✅ Enhanced emotion model loaded successfully!")
+# Load the baseline model (85.92% accuracy)
+model = load_model('thermal_emotion_baseline_model.h5')
+print("Baseline emotion model loaded successfully!")
 
 # Define your emotion classes (update if needed)
-emotion_classes = ['angry', 'happy', 'natural', 'sad', 'surpise']
+emotion_classes = ['angry', 'happy', 'natural', 'sad', 'surprise']
 
 IMG_SIZE = (128, 128)
 
@@ -63,7 +63,7 @@ while True:
     # Display results
     cv2.putText(frame, f'Avg Emotion: {avg_emotion}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 2)
     cv2.putText(frame, f'FPS: {fps:.2f}', (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2)
-    cv2.imshow('Enhanced Emotion Recognition (88.93% Accuracy)', frame)
+    cv2.imshow('Live Emotion Recognition (85.92% Accuracy)', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 cap.release()
