@@ -62,20 +62,21 @@ R&I_ThermalCameras/
 
 ### Prerequisites
 
-#### For Production Model (TensorFlow)
+#### For Production Model (TensorFlow - CPU)
 ```bash
 Python 3.13.3 (confirmed for TensorFlow 2.x compatibility)
-TensorFlow 2.x with GPU support
+TensorFlow 2.x (CPU version - GPU had compatibility issues)
 OpenCV
 NumPy, Pandas, Matplotlib, Scikit-learn
 ```
 
-#### For Experimental Models (PyTorch)
+#### For Experimental Models (PyTorch - GPU Accelerated)
 ```bash
-Python 3.11.6 (required for PyTorch GPU compatibility)
-PyTorch with CUDA support
+Python 3.11.6 (required for PyTorch GPU/CUDA compatibility)
+PyTorch with CUDA 12.1 support (GPU acceleration)
 OpenCV
 NumPy, Pandas, Matplotlib, Scikit-learn
+NVIDIA GPU with CUDA support (e.g., RTX 4060)
 ```
 
 **Important Note on Python Versions & GPU Support:**
