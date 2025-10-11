@@ -78,10 +78,19 @@ OpenCV
 NumPy, Pandas, Matplotlib, Scikit-learn
 ```
 
-**Important Note on Python Versions:**
+**Important Note on Python Versions & GPU Support:**
 - **Production Notebook** (`thermal_emotion_notebook.ipynb`): Uses **Python 3.13.3** with TensorFlow 2.20.0
+  - Trained on CPU (TensorFlow GPU had compatibility issues during development)
+  
 - **Experimental Notebook** (`experimental/thermal_emotion_pytorch.ipynb`): Uses **Python 3.11.6** with PyTorch 2.8.0
-- **Reason for Version Difference**: PyTorch GPU support (CUDA) on Windows has compatibility issues with Python 3.13 as of October 2025, requiring Python 3.11.6 for stable GPU acceleration. TensorFlow has full GPU support with Python 3.13.3.
+  - Switched to PyTorch specifically for **GPU acceleration** (CUDA support)
+  - Python 3.11.6 + PyTorch 2.8.0+cu121 provides stable GPU training on Windows
+  - This combination enabled faster experimental training (ResNet-152, ensemble models, etc.)
+
+**Why Two Different Setups?**
+- **TensorFlow GPU issues**: Encountered GPU compatibility problems with TensorFlow on Windows during initial development, so production model was trained on CPU
+- **PyTorch GPU success**: Switched to PyTorch 2.8.0 with Python 3.11.6 for experimental work to leverage NVIDIA RTX 4060 GPU acceleration
+- **Result**: Production model (CPU-trained) achieved 85.92%, experimental GPU-accelerated models reached 86.52%
 
 If you're running both, you must use separate virtual environments for each framework.
 
@@ -122,9 +131,10 @@ pip install opencv-python numpy pandas matplotlib scikit-learn jupyter
 ```
 
 **Why Two Environments?**
-- **TensorFlow 2.20.0** (production) works with Python 3.13.3 and provides full GPU support on Windows
-- **PyTorch 2.8.0** (experimental) requires Python 3.11.6 for CUDA GPU compatibility on Windows
-- Using separate environments prevents version conflicts and ensures optimal GPU performance for each framework
+- **TensorFlow (production)**: Python 3.13.3, CPU training (GPU had compatibility issues)
+- **PyTorch (experimental)**: Python 3.11.6 + CUDA 12.1, GPU acceleration with RTX 4060
+- **Purpose**: PyTorch environment was created specifically to leverage GPU for faster experimental training
+- Using separate environments prevents version conflicts and enables GPU acceleration for PyTorch experiments
 
 ### Usage
 

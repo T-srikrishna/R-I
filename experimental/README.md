@@ -6,16 +6,18 @@ This folder contains experimental PyTorch-based models and research for thermal 
 
 **This experimental notebook requires Python 3.11.6 for GPU acceleration.**
 
-### Why Python 3.11.6?
-- **GPU Compatibility**: PyTorch 2.8.0 with CUDA support has compatibility issues with Python 3.13 on Windows (as of October 2025)
-- **CUDA Support**: Python 3.11.6 provides stable CUDA 12.1 support for PyTorch training on Windows
-- **RTX 4060 Optimization**: Our training uses NVIDIA RTX 4060 Laptop GPU which requires PyTorch 2.8.0+cu121 built for Python 3.11.x
+### Why Python 3.11.6 + PyTorch?
+- **TensorFlow GPU Issues**: Initial attempts to use TensorFlow with GPU on Windows encountered compatibility problems
+- **Solution**: Switched to PyTorch 2.8.0 specifically to enable GPU acceleration for experimental training
+- **GPU Success**: Python 3.11.6 + PyTorch 2.8.0+cu121 provides stable CUDA 12.1 support on Windows
+- **Hardware**: Successfully leveraged NVIDIA RTX 4060 Laptop GPU for faster training of complex models (ResNet-152, ensemble, etc.)
+- **Performance**: GPU acceleration reduced training time significantly compared to CPU-only training
 
 ### Python Version Differences in This Project
-| Environment | Python Version | Framework | Location | Reason |
-|-------------|---------------|-----------|----------|--------|
-| **Production** | Python 3.13.3 | TensorFlow 2.20.0 | Root notebook | Full TensorFlow GPU support on Windows |
-| **Experimental** | Python 3.11.6 | PyTorch 2.8.0+cu121 | experimental/ | PyTorch CUDA GPU compatibility requirement |
+| Environment | Python Version | Framework | Location | Hardware | Reason |
+|-------------|---------------|-----------|----------|----------|--------|
+| **Production** | Python 3.13.3 | TensorFlow 2.20.0 | Root notebook | CPU | TensorFlow GPU had compatibility issues |
+| **Experimental** | Python 3.11.6 | PyTorch 2.8.0+cu121 | experimental/ | GPU (RTX 4060) | PyTorch enables stable GPU acceleration |
 
 ## Contents
 

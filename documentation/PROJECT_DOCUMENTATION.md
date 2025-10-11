@@ -44,26 +44,31 @@ Successfully trained a production-ready model achieving **85.92% validation accu
 
 ### Python Version Requirements
 
-This project uses **two different Python versions** due to framework GPU compatibility:
+This project uses **two different Python versions** due to framework GPU compatibility challenges:
 
-| Environment | Python Version | Framework | GPU Support | Location |
-|-------------|---------------|-----------|-------------|----------|
-| **Production Model** | **Python 3.13.3** | TensorFlow 2.20.0 | Full GPU support | Root directory |
-| **Experimental Models** | **Python 3.11.6** | PyTorch 2.8.0+cu121 | Required for GPU | experimental/ |
+| Environment | Python Version | Framework | Hardware Used | Location |
+|-------------|---------------|-----------|---------------|----------|
+| **Production Model** | **Python 3.13.3** | TensorFlow 2.20.0 | CPU (GPU issues) | Root directory |
+| **Experimental Models** | **Python 3.11.6** | PyTorch 2.8.0+cu121 | GPU (RTX 4060) | experimental/ |
 
 ### Why Two Python Versions?
 
 **Python 3.13.3 for TensorFlow (Production)**
 - Latest TensorFlow 2.20.0 fully compatible with Python 3.13.3
-- Best performance for TensorFlow GPU acceleration on Windows
+- **GPU Challenge**: Encountered TensorFlow GPU compatibility issues on Windows during development
+- **Solution**: Trained production model on CPU successfully (85.92% accuracy achieved)
 - Stable for production deployments
 - Used in: `thermal_emotion_notebook.ipynb`
 
 **Python 3.11.6 for PyTorch (Experimental)**
-- PyTorch 2.8.0 GPU (CUDA 12.1) compatibility issues with Python 3.13 on Windows (as of October 2025)
-- CUDA support stable with Python 3.11.6
-- RTX 4060 Laptop GPU optimization requires PyTorch 2.8.0+cu121 built for Python 3.11.x
+- **GPU Requirement**: Switched to PyTorch specifically to leverage GPU acceleration
+- PyTorch 2.8.0 + Python 3.11.6 + CUDA 12.1 provides stable GPU support on Windows
+- Successfully utilized NVIDIA RTX 4060 Laptop GPU for experimental training
+- Enabled faster training of complex models (ResNet-152, ensemble models)
+- GPU acceleration significantly reduced training time for experimental architectures
 - Used in: `experimental/thermal_emotion_pytorch.ipynb`
+
+**Key Insight**: The experimental PyTorch environment was created specifically to overcome TensorFlow GPU limitations and enable GPU-accelerated training for research models.
 
 ### Setup Instructions
 
@@ -238,7 +243,9 @@ python -c "import torch; print(f'GPU: {torch.cuda.get_device_name(0)}')"
 | **Transfer ResNet-50 v1** | 67.00% | N/A | 24.6M (65% trainable) | ~1.4 min | Severe overfitting |
 | **Augmented CNN** | 29.78% | 0.2521 | 4.3M | ~50 sec | Failed |
 
-**Framework**: PyTorch 2.8.0+cu121 + Python 3.11.6 (required for GPU compatibility)
+**Framework**: PyTorch 2.8.0+cu121 + Python 3.11.6 (GPU-accelerated on RTX 4060)
+
+**Note**: PyTorch environment was created specifically to enable GPU training after TensorFlow GPU compatibility issues.
 
 ### Comparison: TensorFlow vs PyTorch
 
@@ -248,10 +255,11 @@ python -c "import torch; print(f'GPU: {torch.cuda.get_device_name(0)}')"
 | **F1 (Macro)** | 85.22% | 83.78% | 85.93% |
 | **ROC AUC** | 98.12% | 97.76% | N/A |
 | **Parameters** | 3.3M | 4.3M | 21.5M |
-| **Training Time** | ~88 sec | ~40 sec | ~3.5 min |
+| **Training Time** | ~88 sec (CPU) | ~40 sec (GPU) | ~3.5 min (GPU) |
 | **Model Size** | ~13MB | ~17MB | ~85MB |
+| **Hardware** | CPU | GPU (RTX 4060) | GPU (RTX 4060) |
 
-**Conclusion**: TensorFlow baseline offers best balance. PyTorch ensemble achieves highest accuracy (+0.6%) but requires 5 models.
+**Conclusion**: TensorFlow baseline offers best balance for production. PyTorch ensemble achieves highest accuracy (+0.6%) and demonstrates GPU acceleration benefits for experimental models.
 
 ---
 
