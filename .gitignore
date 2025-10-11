@@ -20,7 +20,3 @@ Thumbs.db
 # Model files - exclude large experimental PyTorch models
 *.pth         # PyTorch model files (16-100+ MB) - can be regenerated from notebooks
 *.pkl         # Pickle files (metadata) - can be regenerated
-
-# Keep the production TensorFlow baseline model in repo
-# thermal_emotion_baseline_model.h5 is kept (39 MB - under 100 MB GitHub limit)
-# This is the production model needed for deployment
