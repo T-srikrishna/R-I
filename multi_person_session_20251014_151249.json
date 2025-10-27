@@ -1,0 +1,101 @@
+{
+  "session_info": {
+    "timestamp": "20251014_151249",
+    "total_persons_seen": 19,
+    "session_stats": {
+      "high_temp_alerts": 468,
+      "low_temp_alerts": 0,
+      "emotion_alerts": 234,
+      "total_detections": 160
+    }
+  },
+  "persons": [
+    {
+      "id": 1,
+      "first_seen": "2025-10-14T15:12:21.342354",
+      "last_seen": "2025-10-14T15:12:49.486721",
+      "frame_count": 95,
+      "average_emotion": "sad",
+      "average_confidence": 0.5558180868625641,
+      "average_temperature": 39.0,
+      "emotion_history": [
+        "sad",
+        "happy",
+        "sad",
+        "sad",
+        "sad"
+      ],
+      "temperature_history": [
+        39.0,
+        39.0,
+        39.0,
+        39.0,
+        39.0
+      ]
+    },
+    {
+      "id": 16,
+      "first_seen": "2025-10-14T15:12:46.677399",
+      "last_seen": "2025-10-14T15:12:46.677400",
+      "frame_count": 1,
+      "average_emotion": "happy",
+      "average_confidence": 0.2953086495399475,
+      "average_temperature": 37.9,
+      "emotion_history": [
+        "happy"
+      ],
+      "temperature_history": [
+        37.9
+      ]
+    },
+    {
+      "id": 17,
+      "first_seen": "2025-10-14T15:12:47.184563",
+      "last_seen": "2025-10-14T15:12:48.316689",
+      "frame_count": 2,
+      "average_emotion": "natural",
+      "average_confidence": 0.6023895740509033,
+      "average_temperature": 38.3,
+      "emotion_history": [
+        "natural",
+        "sad"
+      ],
+      "temperature_history": [
+        38.3,
+        38.3
+      ]
+    },
+    {
+      "id": 18,
+      "first_seen": "2025-10-14T15:12:47.460214",
+      "last_seen": "2025-10-14T15:12:47.460214",
+      "frame_count": 1,
+      "average_emotion": "natural",
+      "average_confidence": 0.24174946546554565,
+      "average_temperature": 39.5,
+      "emotion_history": [
+        "natural"
+      ],
+      "temperature_history": [
+        39.5
+      ]
+    },
+    {
+      "id": 19,
+      "first_seen": "2025-10-14T15:12:48.043473",
+      "last_seen": "2025-10-14T15:12:49.044771",
+      "frame_count": 2,
+      "average_emotion": "natural",
+      "average_confidence": 0.46409742534160614,
+      "average_temperature": 38.75,
+      "emotion_history": [
+        "natural",
+        "happy"
+      ],
+      "temperature_history": [
+        39.0,
+        38.5
+      ]
+    }
+  ]
+}

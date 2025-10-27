@@ -1,0 +1,37 @@
+{
+  "session_info": {
+    "timestamp": "20251011_160836",
+    "total_persons_seen": 5,
+    "session_stats": {
+      "high_temp_alerts": 126,
+      "low_temp_alerts": 0,
+      "emotion_alerts": 48,
+      "total_detections": 72
+    }
+  },
+  "persons": [
+    {
+      "id": 1,
+      "first_seen": "2025-10-11T16:08:22.001759",
+      "last_seen": "2025-10-11T16:08:35.934903",
+      "frame_count": 66,
+      "average_emotion": "happy",
+      "average_confidence": 0.4354024052619934,
+      "average_temperature": 38.8,
+      "emotion_history": [
+        "happy",
+        "happy",
+        "happy",
+        "happy",
+        "sad"
+      ],
+      "temperature_history": [
+        38.8,
+        38.8,
+        38.8,
+        38.8,
+        38.8
+      ]
+    }
+  ]
+}
