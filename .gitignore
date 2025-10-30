@@ -1,22 +1,65 @@
-# Ignore dataset folder
-Facial emotion/
+# =========================
+# Project .gitignore
+# =========================
 
-# Virtual environments
+# === Datasets ===
+# Exclude all thermal/IR or facial emotion datasets
+"Facial emotion/"
+Facial emotion*/
+D:/R&I_ThermalCameras/TD_IR_EMOTIONS_CROPPED/
+TD_IR_EMOTIONS_CROPPED/
+R&I_ThermalCameras/
+TD_IR_EMOTIONS*/
+Thermal*/
+Camera*/
+
+# === Python artifacts ===
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.log
+*.csv
+
+# === Virtual environments ===
 venv/
 venv_*/
 env/
 ENV/
-*.pyc
-__pycache__/
 
-# IDE
+# === IDE / Editor settings ===
 .vscode/
 .idea/
 
-# OS
+# === OS files ===
 .DS_Store
 Thumbs.db
 
-# Model files - exclude large experimental PyTorch models
-*.pth         # PyTorch model files (16-100+ MB) - can be regenerated from notebooks
-*.pkl         # Pickle files (metadata) - can be regenerated
+# === Model and large binary files ===
+*.h5
+*.hdf5
+*.keras
+*.pth
+*.pkl
+*.onnx
+*.tflite
+
+# === Misc ===
+*.bak
+*.tmp
+*.zip
+*.rar
+*.tar
+*.gz
+*.7z
+
+# === Exclude training outputs / videos ===
+outputs/
+runs/
+checkpoints/
+recordings/
+*.mp4
+*.avi
+*.mov
+
+
