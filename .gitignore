@@ -62,4 +62,14 @@ recordings/
 *.avi
 *.mov
 
+# === Volunteer Testing Data ===
+# Exclude volunteer video files and extracted frames
+AccuracyEvaluation/Sub*/
+AccuracyEvaluation/finetune_data/
+AccuracyEvaluation/*.png
+AccuracyEvaluation/thermal_emotion_model_finetuned.h5
+
+# Allow result CSV files from AccuracyEvaluation
+!AccuracyEvaluation/*.csv
+
 

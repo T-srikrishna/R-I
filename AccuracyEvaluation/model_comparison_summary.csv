@@ -1,0 +1,4 @@
+Metric,Original Model,Fine-Tuned Model,Improvement
+Overall Accuracy (%),18.94,31.45,12.52
+Average Confidence (%),74.29000091552734,49.959999084472656,-24.31999969482422
+Total Samples,1542.0,1542.0,0.0

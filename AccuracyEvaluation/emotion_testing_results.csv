@@ -1,0 +1,7 @@
+Emotion,Accuracy (%),Total Frames,Correct Predictions,Incorrect Predictions,Avg Confidence (%)
+Angry,0.67,299,2,297,71.54
+Happy,5.51,272,15,257,71.63
+Natural,34.5,258,89,169,76.28
+Sad,29.59,436,129,307,76.06
+Surprise,20.58,277,57,220,75.2
+OVERALL,18.94,1542,292,1250,74.29
