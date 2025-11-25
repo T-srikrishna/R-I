@@ -108,9 +108,7 @@ def detect_faces(frame, thresh_val=100, min_size=(40, 40)):
 
 
 def non_max_suppression(boxes, overlap_thresh=0.3):
-    """Remove overlapping boxes, keeping only the topmost (highest Y coordinate = face).
-    For thermal images, the face is typically the highest hot region on a person.
-    """
+    """Apply non-maximum suppression to bounding boxes."""
     if len(boxes) == 0:
         return []
     
