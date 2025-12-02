@@ -54,7 +54,7 @@ These experimental models were developed to:
 |-------|---------------------|------------|------------|-------|
 | **Ensemble (5 CNNs)** | **86.52%** | 0.8593 | 21.5M total | Best PyTorch result |
 | **Baseline CNN (PyTorch)** | 85.11% | 0.8378 | 4.3M | Strong baseline |
-| **TensorFlow Baseline** | 85.92% | 0.8522 | 3.3M | Production model |
+| **TensorFlow Baseline** | 88.00% | 0.8735 | 3.3M | Production model |
 | **Transfer ResNet-50 v2** | 84.91% | N/A | 24.6M | Thermal-adapted conv1 |
 | **Transfer ResNet-50 v1** | 67.00% | N/A | 24.6M | ImageNet features, overfitting |
 | **Augmented CNN (PyTorch)** | 29.78% | 0.2521 | 4.3M | Geometric aug failed (-55%) |
@@ -72,7 +72,7 @@ These experimental models were developed to:
 
 **Production Model**: The main production model is in the root directory:
 - `thermal_emotion_baseline_model.h5` (TensorFlow/Keras)
-- **85.92% validation accuracy**
+- **88.00% validation accuracy**
 - **3.3M parameters**
 - **Production-ready**
 - **Key insight**: Trained WITHOUT geometric augmentation - palette diversity alone provides superior results
@@ -84,12 +84,12 @@ These experimental models were developed to:
 - **Research use**: More complex, requires loading 5 models
 
 **Important Finding**: Both TensorFlow and PyTorch experiments confirm geometric augmentation (rotation, shift, zoom, flip) **dramatically decreases** performance:
-- TensorFlow: 85.92% → 40.64% (-45.28%)
+- TensorFlow: 88.00% → 40.64% (-47.36%)
 - PyTorch: 85.11% → 29.78% (-55.33%)
 
 The multi-palette dataset structure provides natural color-based augmentation that is far more effective than traditional spatial transforms for thermal emotion recognition.
 
-**Recommendation**: For production, use the TensorFlow baseline model (single file, lightweight, proven). For research into ensemble methods, PyTorch models demonstrate 1.4% improvement through model averaging.
+**Recommendation**: For production, use the TensorFlow baseline model (single file, lightweight, proven). For research into ensemble methods, PyTorch models demonstrate marginal improvement through model averaging (86.52% vs 88% baseline - actually 1.48% lower).
 
 ## Documentation
 
@@ -97,7 +97,7 @@ For detailed experimental results and comparisons with the production baseline m
 - [`../documentation/PROJECT_DOCUMENTATION.md`](../documentation/PROJECT_DOCUMENTATION.md)
 
 **Latest Results** (October 11, 2025):
-- **TensorFlow Baseline**: 85.92% accuracy (production model)
+- **TensorFlow Baseline**: 88.00% accuracy (production model)
 - **PyTorch Ensemble**: 86.52% accuracy (5 models, best experimental result)
 - **PyTorch Baseline**: 85.11% accuracy
 - **PyTorch Transfer Learning v2**: 84.91% (thermal-adapted ResNet-50)
