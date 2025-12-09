@@ -54,7 +54,8 @@ These experimental models were developed to:
 |-------|---------------------|------------|------------|-------|
 | **Ensemble (5 CNNs)** | **86.52%** | 0.8593 | 21.5M total | Best PyTorch result |
 | **Baseline CNN (PyTorch)** | 85.11% | 0.8378 | 4.3M | Strong baseline |
-| **TensorFlow Baseline** | 88.00% | 0.8735 | 3.3M | Production model |
+| **TensorFlow Baseline** | 82.49% | 0.8153 | 3.3M | Baseline model |
+| **TensorFlow Grid Search** | 93.76% | TBD | 3.3M | Production model |
 | **Transfer ResNet-50 v2** | 84.91% | N/A | 24.6M | Thermal-adapted conv1 |
 | **Transfer ResNet-50 v1** | 67.00% | N/A | 24.6M | ImageNet features, overfitting |
 | **Augmented CNN (PyTorch)** | 29.78% | 0.2521 | 4.3M | Geometric aug failed (-55%) |
@@ -71,11 +72,11 @@ These experimental models were developed to:
 ## Note
 
 **Production Model**: The main production model is in the root directory:
-- `thermal_emotion_baseline_model.h5` (TensorFlow/Keras)
-- **88.00% validation accuracy**
+- `thermal_emotion_model_gridsearch.h5` (TensorFlow/Keras)
+- **93.76% validation accuracy** (grid search optimized)
 - **3.3M parameters**
 - **Production-ready**
-- **Key insight**: Trained WITHOUT geometric augmentation - palette diversity alone provides superior results
+- **Key insight**: Grid search optimization (RMSprop, batch 16, 30 epochs) improved baseline 82.49% → 93.76%
 
 **PyTorch Best Model**: Ensemble of 5 CNNs (experimental folder):
 - `thermal_ensemble_model_1.pth` through `_5.pth`
@@ -84,12 +85,12 @@ These experimental models were developed to:
 - **Research use**: More complex, requires loading 5 models
 
 **Important Finding**: Both TensorFlow and PyTorch experiments confirm geometric augmentation (rotation, shift, zoom, flip) **dramatically decreases** performance:
-- TensorFlow: 88.00% → 40.64% (-47.36%)
+- TensorFlow Baseline: 82.49% → ~40% (~-42% decrease)
 - PyTorch: 85.11% → 29.78% (-55.33%)
 
 The multi-palette dataset structure provides natural color-based augmentation that is far more effective than traditional spatial transforms for thermal emotion recognition.
 
-**Recommendation**: For production, use the TensorFlow baseline model (single file, lightweight, proven). For research into ensemble methods, PyTorch models demonstrate marginal improvement through model averaging (86.52% vs 88% baseline - actually 1.48% lower).
+**Recommendation**: For production, use the TensorFlow grid search model (single file, lightweight, 93.76% accuracy). For research into ensemble methods, PyTorch models demonstrate good performance (86.52%) but lower than optimized TensorFlow (93.76%).
 
 ## Documentation
 
@@ -97,13 +98,14 @@ For detailed experimental results and comparisons with the production baseline m
 - [`../documentation/PROJECT_DOCUMENTATION.md`](../documentation/PROJECT_DOCUMENTATION.md)
 
 **Latest Results** (October 11, 2025):
-- **TensorFlow Baseline**: 88.00% accuracy (production model)
+- **TensorFlow Grid Search**: 93.76% accuracy (production model, optimized)
+- **TensorFlow Baseline**: 82.49% accuracy
 - **PyTorch Ensemble**: 86.52% accuracy (5 models, best experimental result)
 - **PyTorch Baseline**: 85.11% accuracy
 - **PyTorch Transfer Learning v2**: 84.91% (thermal-adapted ResNet-50)
 - **PyTorch Transfer Learning v1**: 67.00% (ImageNet features, severe overfitting)
-- **Augmented Models**: Failed in both frameworks (-45-55% decrease)
-- **Key Finding**: Palette diversity provides superior augmentation vs geometric transforms for thermal images
+- **Augmented Models**: Failed in both frameworks (~-40-55% decrease)
+- **Key Finding**: Grid search optimization (RMSprop, batch 16, 30 epochs) + palette diversity provides best results
 
 ## Usage
 

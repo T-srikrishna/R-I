@@ -5,14 +5,14 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)](https://www.tensorflow.org/)
 [![Status](https://img.shields.io/badge/Status-Phase%201%20Complete-success.svg)]()
-[![Accuracy](https://img.shields.io/badge/Accuracy-88.00%25-brightgreen.svg)]()
+[![Accuracy](https://img.shields.io/badge/Accuracy-93.76%25-brightgreen.svg)]()
 
 ## Project Overview
 
-This project develops a Convolutional Neural Network (CNN) to classify emotions from thermal facial images. The model achieves **88.00% validation accuracy** across five emotion classes using thermal imaging data with multiple color palette representations.
+This project develops a Convolutional Neural Network (CNN) to classify emotions from thermal facial images. The model achieves **93.76% validation accuracy** across five emotion classes using thermal imaging data with multiple color palette representations.
 
 ### Key Highlights
-- **88.00% Accuracy**: Production-ready baseline emotion recognition model
+- **93.76% Accuracy**: Production-ready grid search optimized emotion recognition model
 - **Multi-Palette Support**: Trained on 5 thermal color palettes per emotion (combinations of ICEBLUE, IRNBOW, IRON, RAINBOW, Red Hot, White Hot)
 - **5 Emotion Classes**: Angry, Happy, Natural, Sad, Surprise
 - **Lightweight**: Only 3.3M parameters, ~13MB model size
@@ -28,8 +28,8 @@ This project develops a Convolutional Neural Network (CNN) to classify emotions 
 R&I_ThermalCameras/
 │
 ├── thermal_emotion_notebook.ipynb        # Main training notebook (PRODUCTION)
-├── thermal_emotion_baseline_model.h5     # Trained baseline model (88.00% accuracy)
-├── thermal_emotion_model_gridsearch.h5   # Grid search optimized (91.15% accuracy)
+├── thermal_emotion_baseline_model.h5     # Trained baseline model (82.49% accuracy)
+├── thermal_emotion_model_gridsearch.h5   # Grid search optimized (93.76% accuracy)
 │
 ├── AccuracyEvaluation/                   # Real-world volunteer testing
 │   ├── volunteerTesting.ipynb            # Volunteer video testing workflow
@@ -103,7 +103,7 @@ NVIDIA GPU with CUDA support (e.g., RTX 4060)
 **Why Two Different Setups?**
 - **TensorFlow GPU issues**: Encountered GPU compatibility problems with TensorFlow on Windows during initial development, so production model was trained on CPU
 - **PyTorch GPU success**: Switched to PyTorch 2.8.0 with Python 3.11.6 for experimental work to leverage NVIDIA RTX 4060 GPU acceleration
-- **Result**: Production model (CPU-trained) achieved 88.00%, experimental GPU-accelerated models reached 86.52%
+- **Result**: Production model (CPU-trained) achieved 93.76% (grid search optimized), baseline 82.49%, experimental GPU-accelerated models reached 86.52%
 
 If you're running both, you must use separate virtual environments for each framework.
 
@@ -188,7 +188,7 @@ jupyter notebook thermal_emotion_notebook.ipynb
 # Run all cells to:
 # - Load and preprocess data (2,485 images)
 # - Train baseline CNN model (20 epochs)
-# - Evaluate performance (88.00% accuracy)
+# - Evaluate performance (82.49% baseline, 93.76% grid search)
 # - Test augmentation hypothesis (palette vs geometric)
 # - Save the trained model (thermal_emotion_baseline_model.h5)
 ```
@@ -197,14 +197,15 @@ jupyter notebook thermal_emotion_notebook.ipynb
 
 ## Model Performance
 
-### Production Model: Baseline CNN (No Geometric Augmentation)
+### Production Model: Grid Search Optimized CNN
 
 | Metric | Value |
 |--------|-------|
-| **Validation Accuracy** | **88.00%** |
-| **F1 Score (Macro)** | 87.35% |
-| **F1 Score (Weighted)** | 87.70% |
-| **ROC AUC (Macro)** | 98.12% |
+| **Validation Accuracy** | **93.76%** |
+| **Training Accuracy** | 99.20% |
+| **Best CV Score** | 87.37% |
+| **F1 Score (Macro)** | TBD |
+| **F1 Score (Weighted)** | TBD |
 | **Parameters** | 3,305,285 |
 | **Model Size** | ~12.61 MB |
 | **Training Time** | ~88 seconds (20 epochs) |
@@ -240,25 +241,26 @@ model = Sequential([
 ```
 
 ### Training Configuration
-- **Optimizer**: Adam
+- **Optimizer**: RMSprop (grid search optimized)
 - **Loss**: Sparse Categorical Crossentropy
 - **Regularization**: Dropout (0.5)
-- **Data Augmentation**: None (baseline model - palette diversity is sufficient)
-- **Batch Size**: 32
-- **Epochs**: 20
-- **Training Time**: ~88 seconds on GPU
+- **Data Augmentation**: None (palette diversity is sufficient)
+- **Batch Size**: 16 (grid search optimized)
+- **Epochs**: 30 (grid search optimized)
+- **Training Time**: ~15-20 min (30 epochs)
 - **Dataset Split**: 80% train (1,988 images), 20% validation (497 images)
 
-### Key Finding: Palette Diversity > Geometric Augmentation
+### Key Finding: Grid Search Optimization + Palette Diversity
 
-**Experimental Result**: Adding geometric augmentation (rotation, shift, zoom, flip) **decreased** performance by 45.27%
+**Experimental Result**: Grid search hyperparameter optimization improved baseline by **+11.27%**
 
 | Model | Accuracy | F1 (Macro) | Note |
 |-------|----------|------------|------|
-| **Baseline** (No geometric aug) | **88.00%** | **87.35%** | Best performance |
-| **Augmented** (With geometric aug) | 40.64% | Lower | Performance degraded |
+| **Baseline** (No geometric aug) | **82.49%** | **81.53%** | Baseline performance |
+| **Grid Search Optimized** | **93.76%** | **TBD** | Best performance (+11.27%) |
+| **Augmented** (With geometric aug) | ~40% | Lower | Performance degraded (~-42%) |
 
-**Why Palette Diversity Works Better:**
+**Why Grid Search + Palette Diversity Works Best:**
 - Dataset includes 6 color palettes per emotion (ICEBLUE, IRNBOW, IRON, RAINBOW, Red Hot, White Hot)
 - Different palettes = natural color-based augmentation (6× effective data)
 - Model learns color invariance from palettes
@@ -271,7 +273,7 @@ model = Sequential([
 
 ### Critical Discovery: Domain Gap Challenge
 
-After achieving **91.15% validation accuracy** on the training dataset, we conducted real-world testing with live volunteer videos. This revealed a **critical gap between training performance and real-world deployment**.
+After achieving **93.76% validation accuracy** on the training dataset, we conducted real-world testing with live volunteer videos. This revealed a **critical gap between training performance and real-world deployment**.
 
 ### Testing Methodology
 
@@ -280,7 +282,7 @@ After achieving **91.15% validation accuracy** on the training dataset, we condu
 - **Emotions Tested**: Angry, Happy, Natural, Sad, Surprise (5 emotions)
 - **Video Collection**: Each volunteer recorded videos posing each emotion
 - **Frame Extraction**: Every 5th frame extracted → 1,542 total test frames
-- **Model Tested**: `thermal_emotion_model_gridsearch.h5` (91.15% validation accuracy)
+- **Model Tested**: `thermal_emotion_model_gridsearch.h5` (93.76% validation accuracy)
 
 **Process:**
 1. Volunteers posed thermal emotion videos in controlled environment
@@ -577,6 +579,5 @@ This project is part of academic research. All rights reserved.
 
 ---
 
-**Last Updated**: December 2, 2025  
-**Version**: 1.0.0 (Phase 1 Complete)  
-**Status**: Production-Ready Model | Phase 2 Planning
+**Last Updated**: December 2, 2025   
+**Status**: Production-Ready Model 
